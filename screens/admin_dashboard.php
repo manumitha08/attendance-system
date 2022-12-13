@@ -11,8 +11,6 @@
 </head>
 <body style="font-family: 'Sen', sans-serif;">
 
-    
-
 
     <div class="std_container">
 
@@ -48,7 +46,8 @@
                 </ul>
             </div>
 
-        
+            <div id='err_message'></div>
+            <div id='suc_message'></div>
 
     
             <div class="overflow-x-auto overflow-y-auto relative shadow-md sm:rounded-lg " style="height:400px;">
@@ -178,6 +177,24 @@
             localStorage.removeItem('admin_id');
             window.location.reload();
         })
+
+        function deleteStudentById(val) {
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.open("DELETE", "../controllers/student_delete.php?id="+val, true);
+            xmlhttp.setRequestHeader('Content-type','x-www-form-urlencoded')
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById('suc_message').innerHTML = this.responseText;
+                    getRequest()
+                }
+            };
+
+            xmlhttp.send();
+        }
+
 
 
     </script>

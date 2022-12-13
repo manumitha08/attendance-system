@@ -8,6 +8,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../public/icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../public/css/dashboard.css?<?php echo time(); ?>">
+
+    <style>
+        .err_msg{
+            background-color: #F8D7DA;
+            color: #9D1C24;
+            padding: .7rem;
+            margin: .5rem 0;
+            border-radius: 3px;
+            text-align: center;
+        }
+        .suc_msg{
+            background: #D4EDDA;
+            color: #525759;
+            padding: .7rem;
+            margin: .5rem 0;
+            border-radius: 3px;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body style="font-family: 'Sen', sans-serif;">
@@ -49,7 +68,8 @@
             </div>
 
         
-
+            <div id='err_message'></div>
+            <div id='suc_message'></div>
     
             <div class="overflow-x-auto overflow-y-auto relative shadow-md sm:rounded-lg " style="height:400px;">
                 <table class="w-full text-sm text-left text-gray-700">
@@ -176,6 +196,24 @@
             localStorage.removeItem('teacher_id');
             window.location.reload();
         })
+
+        function deleteStudentById(val) {
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.open("DELETE", "../controllers/student_delete.php?id="+val, true);
+            xmlhttp.setRequestHeader('Content-type','x-www-form-urlencoded')
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById('suc_message').innerHTML = this.responseText;
+                    getRequest()
+                }
+            };
+
+            xmlhttp.send();
+        }
+
 
     </script>
 </body>

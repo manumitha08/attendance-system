@@ -79,3 +79,21 @@
     margin-top: 80px;
     margin-right: 70px;
 }
+
+
+.err_msg{
+    background-color: #F8D7DA;
+    color: #9D1C24;
+    padding: .7rem;
+    margin: .5rem 0;
+    border-radius: 3px;
+    text-align: center;
+}
+.suc_msg{
+    background: #D4EDDA;
+    color: #525759;
+    padding: .7rem;
+    margin: .5rem 0;
+    border-radius: 3px;
+    text-align: center;
+}
